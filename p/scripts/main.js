@@ -974,6 +974,15 @@ function init_notifs_html5() {
 }
 // </notifs html5>
 
+function addFirefoxReader() {
+	// https://developer.mozilla.org/en-US/Firefox/Releases/2/Adding_feed_readers_to_Firefox
+	navigator.registerContentHandler(
+		'application/vnd.mozilla.maybe.feed',
+		window.location.origin + window.location.pathname + '?c=feed&a=add&url_rss=%s',
+		'FreshRSS @ ' + window.location.host
+	);
+}
+
 function refreshUnreads() {
 	$.getJSON('./?c=javascript&a=nbUnreadsPerFeed').done(function (data) {
 		var isAll = $('.category.all.active').length > 0,
@@ -1195,6 +1204,11 @@ function init_share_observers() {
 		$(this).parents('.form-group').before(row);
 		shares++;
 
+		return false;
+	});
+	
+	$('#clickAddFirefoxReader').on('click', function(e) {
+		addFirefoxReader();
 		return false;
 	});
 }
