@@ -131,10 +131,10 @@ class FreshRSS extends Minz_FrontController {
 				header(sprintf("Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; frame-src https://*; img-src * data:; media-src *; %s", $connectSrc));
 				break;
 			case 'stats':
-				header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'");
+				header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'");
 				break;
 			default:
-				header("Content-Security-Policy: default-src 'self'");
+				header("Content-Security-Policy: default-src 'self'; frame-ancestors 'none'");
 				break;
 		}
 		header("X-Content-Type-Options: nosniff");
